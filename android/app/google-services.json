@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "95423241590",
+    "firebase_url": "https://snapocial-488de.firebaseio.com",
+    "project_id": "snapocial-488de",
+    "storage_bucket": "snapocial-488de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95423241590:android:bfa96fa2957f855ecf6e57",
+        "android_client_info": {
+          "package_name": "com.shanewilson.snapocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95423241590-amfef4a0knv8e7dp6di593n62agilgn1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shanewilson.snapocial",
+            "certificate_hash": "00d7585cdc22910cc8e71df5baf9ac79fa18fa5f"
+          }
+        },
+        {
+          "client_id": "95423241590-qtrcp48itt7se1kpjtb0chfbd50ahucj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbGKj-VmvWt20T2sf7L-dVqJWI8FXemmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95423241590-qtrcp48itt7se1kpjtb0chfbd50ahucj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "95423241590-q0tub1lvu3f2hrcajqrq9g210gu3pqbn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shanewilson.snapocial"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
