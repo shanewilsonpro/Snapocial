@@ -13,28 +13,47 @@ class _HomeState extends State<Home> {
   bool isAuth = false;
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     googleSignIn.onCurrentUserChanged.listen((account) {
-      if (account != null) {
-        print('User sign in!: $account');
-        setState(() {
-          isAuth = true;
-        });
-      } else {
-        setState(() {
-          isAuth = false;
-        });
-      }
+      handleSignIn(account);
+    }, onError: (err) {
+      print('Error signing in: $err');
     });
+    //reauthenticate user when app is opened
+    googleSignIn.signInSilently(suppressErrors: false).then((account) {
+      handleSignIn(account);
+    }).catchError((err) {
+      print('Error signing in: $err');
+    });
+  }
+
+  handleSignIn(GoogleSignInAccount account) {
+    if (account != null) {
+      print('User sign in!: $account');
+      setState(() {
+        isAuth = true;
+      });
+    } else {
+      setState(() {
+        isAuth = false;
+      });
+    }
   }
 
   login() {
     googleSignIn.signIn();
   }
 
+  logout() {
+    googleSignIn.signOut();
+  }
+
   Widget buildAuthScreen() {
-    return Text('Authenticated');
+    return RaisedButton(
+      child: Text('Logout'),
+      onPressed: logout,
+    );
   }
 
   Scaffold buildUnAuthScreen() {
@@ -58,10 +77,10 @@ class _HomeState extends State<Home> {
             Text(
               'Snapocial',
               style: TextStyle(
-                  fontFamily: "Signatra", 
-                  fontSize: 90.0, 
-                  color: Colors.white,
-                  ),
+                fontFamily: "Signatra",
+                fontSize: 90.0,
+                color: Colors.white,
+              ),
             ),
             GestureDetector(
               onTap: login,
@@ -70,9 +89,9 @@ class _HomeState extends State<Home> {
                 height: 60.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/google_signin_button.png'),
-                    fit: BoxFit.cover
-                  ),
+                      image:
+                          AssetImage('assets/images/google_signin_button.png'),
+                      fit: BoxFit.cover),
                 ),
               ),
             ),
