@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
           //Timeline(),
           RaisedButton(child: Text('Logout'), onPressed: logout,),
           ActivityFeed(),
-          Upload(),
+          Upload(currentUser: currentUser),
           Search(),
           Profile(),
         ],
