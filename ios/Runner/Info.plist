@@ -18,6 +18,7 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<!--- Google Sign-in Section -->
 	<key>CFBundleURLTypes</key>
 	<array>
 	<dict>
@@ -29,6 +30,15 @@
 	</array>
 	</dict>
 	</array>
+	<!-- End of Google Sign-in Section -->
+	<!-- For Image Picker -->
+	<key>NSCameraUsageDescription</key>
+	<string>Used to demonstrate image picker plugin</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to capture audio for image picker plugin</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to demonstrate image picker plugin</string>
+	<!-- End of Image Picker -->
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
