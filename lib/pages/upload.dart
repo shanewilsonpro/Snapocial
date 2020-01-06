@@ -10,49 +10,47 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
-  File file;
+  File _file;
 
-  handleTakePhoto() async {
+  Future handleTakePhoto() async {
     Navigator.pop(context);
-    File file = await ImagePicker.pickImage(source: ImageSource.camera, 
-    maxHeight: 675, 
-    maxWidth: 960,);
+    var file = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      maxHeight: 675,
+      maxWidth: 960,
+    );
     setState(() {
-      this.file = file;
+      this._file = file;
     });
   }
 
-  handleChooseFromGallery() async {
+  Future handleChooseFromGallery() async {
     Navigator.pop(context);
-    File file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
-      this.file = file;
+      this._file = file;
     });
   }
 
   selectImage(parentContext) {
     return showDialog(
-      context: parentContext,
-      builder: (context) {
-        return SimpleDialog(
-          title: Text("Create Post"),
-          children: <Widget>[
-            SimpleDialogOption(
-              child: Text("Photo with Camera"),
-              onPressed: handleTakePhoto
-            ),
-            SimpleDialogOption(
-              child: Text("Image from Gallery"),
-              onPressed: handleChooseFromGallery
-            ),
-            SimpleDialogOption(
-              child: Text("Cancel"),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
-        );
-      }
-    );
+        context: parentContext,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text("Create Post"),
+            children: <Widget>[
+              SimpleDialogOption(
+                  child: Text("Photo with Camera"), onPressed: handleTakePhoto),
+              SimpleDialogOption(
+                  child: Text("Image from Gallery"),
+                  onPressed: handleChooseFromGallery),
+              SimpleDialogOption(
+                child: Text("Cancel"),
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          );
+        });
   }
 
   Container buildSplashScreen() {
@@ -65,19 +63,18 @@ class _UploadState extends State<Upload> {
           Padding(
             padding: EdgeInsets.only(top: 20.0),
             child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Text(
-                "Upload Image",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-              ),
-              color: Colors.deepOrange,
-              onPressed: () => selectImage(context)
-            ),
+                child: Text(
+                  "Upload Image",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.0,
+                  ),
+                ),
+                color: Colors.deepOrange,
+                onPressed: () => selectImage(context)),
           ),
         ],
       ),
@@ -90,6 +87,6 @@ class _UploadState extends State<Upload> {
 
   @override
   Widget build(BuildContext context) {
-    return file == null ? buildSplashScreen() : buildUploadForm();
+    return _file == null ? buildSplashScreen() : buildUploadForm();
   }
 }
