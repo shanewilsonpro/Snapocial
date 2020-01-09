@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:snapocial/models/user.dart';
+import 'package:snapocial/pages/edit_profile.dart';
 import 'package:snapocial/pages/home.dart';
 import 'package:snapocial/widgets/header.dart';
 import 'package:snapocial/widgets/progress.dart';
@@ -42,7 +43,8 @@ class _ProfileState extends State<Profile> {
   }
 
   editProfile() {
-
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>
+    EditProfile(currentUserId: currentUserId)));
   }
 
   Container buildButton({ String text, Function function }) {
