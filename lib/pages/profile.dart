@@ -6,6 +6,7 @@ import 'package:snapocial/pages/edit_profile.dart';
 import 'package:snapocial/pages/home.dart';
 import 'package:snapocial/widgets/header.dart';
 import 'package:snapocial/widgets/post.dart';
+import 'package:snapocial/widgets/post_title.dart';
 import 'package:snapocial/widgets/progress.dart';
 
 class Profile extends StatefulWidget {
@@ -197,9 +198,22 @@ class _ProfileState extends State<Profile> {
     if (isLoading) {
       return circularProgress();
     }
-    return Column(
-      children: posts,
+    List<GridTile> gridTiles = [];
+    posts.forEach((post) {
+      gridTiles.add(GridTile(child: PostTile(post)));
+    });
+    return GridView.count(
+      crossAxisCount: 3,
+      childAspectRatio: 1.0,
+      mainAxisSpacing: 1.5,
+      crossAxisSpacing: 1.5,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      children: gridTiles,
     );
+    //return Column(
+    //  children: posts,
+    //);
   }
 
   @override
