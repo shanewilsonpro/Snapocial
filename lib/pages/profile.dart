@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:snapocial/models/user.dart';
 import 'package:snapocial/pages/edit_profile.dart';
 import 'package:snapocial/pages/home.dart';
@@ -35,7 +36,6 @@ class _ProfileState extends State<Profile> {
     setState(() {
       isLoading = true;
     });
-
     QuerySnapshot snapshot = await postsRef
         .document(widget.profileId)
         .collection('userPosts')
@@ -86,7 +86,7 @@ class _ProfileState extends State<Profile> {
         onPressed: function,
         child: Container(
           width: 250.0,
-          height: 26.0,
+          height: 27.0,
           child: Text(
             text,
             style: TextStyle(
@@ -108,7 +108,7 @@ class _ProfileState extends State<Profile> {
   }
 
   buildProfileButton() {
-    //viewing your own profile - should show edit profile button
+    // viewing your own profile - should show edit profile button
     bool isProfileOwner = currentUserId == widget.profileId;
     if (isProfileOwner) {
       return buildButton(text: "Edit Profile", function: editProfile);
@@ -196,6 +196,26 @@ class _ProfileState extends State<Profile> {
   buildProfilePosts() {
     if (isLoading) {
       return circularProgress();
+    } else if (posts.isEmpty) {
+      return Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SvgPicture.asset('assets/images/no_content.svg', height: 260.0),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: Text(
+                "No Posts",
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
     } else if (postOrientation == "grid") {
       List<GridTile> gridTiles = [];
       posts.forEach((post) {
