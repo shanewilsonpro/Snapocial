@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^1.5.1
   image: ^2.1.4
   uuid: ^2.0.4
+  animator: ^1.0.0+3
   geolocator: ^5.1.5
   cached_network_image:
   flutter_svg:
