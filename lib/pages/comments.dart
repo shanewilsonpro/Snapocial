@@ -66,7 +66,8 @@ class CommentsState extends State<Comments> {
       "avatarUrl": currentUser.photoUrl,
       "userId": currentUser.id,
     });
-    bool isNotPostOwner = postOwnerId != currentUser.id;
+    //changes to != for other user, == is for yourself to test
+    bool isNotPostOwner = postOwnerId == currentUser.id;
     if (isNotPostOwner) {
       activityFeedRef.document(postOwnerId).collection('feedItems').add({
         "type": "comment",

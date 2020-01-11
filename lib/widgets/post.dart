@@ -163,8 +163,9 @@ class _PostState extends State<Post> {
   }
 
   addLikeToActivityFeed() {
-    //add a notification to the postOwner's activity feed only if comment made by other user
-    bool isNotPostOwner = currentUserId != ownerId;
+    //add a notification to the postOwner's activity feed only if comment made by OHTER user
+    //changes to != for other users, == is for yourself to test
+    bool isNotPostOwner = currentUserId == ownerId;
     if (isNotPostOwner) {
       activityFeedRef
           .document(ownerId)
@@ -183,7 +184,7 @@ class _PostState extends State<Post> {
   }
 
   removeLikeFromActivityFeed() {
-    bool isNotPostOwner = currentUserId != ownerId;
+    bool isNotPostOwner = currentUserId == ownerId;
     if (isNotPostOwner) {
       activityFeedRef
           .document(ownerId)
