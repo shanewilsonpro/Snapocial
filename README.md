@@ -1,6 +1,6 @@
-# snapocial
+# Snapocial
 
-A new Flutter project.
+Make this complete mobile social media app like Instagram using Flutter and Firebase.
 
 ## Getting Started
 
